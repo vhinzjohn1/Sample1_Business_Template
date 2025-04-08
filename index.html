@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Studios | Products & Services</title>
+
+  <!-- DaisyUI & Tailwind CSS (Updated) -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animation Libraries -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <style>
+    /* Tailwind Config Extension */
+    @layer base {
+      :root {
+        --animation-timing: 300ms;
+      }
+    }
+
+    /* Modern Parallax Effect */
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 85vh;
+      position: relative;
+    }
+
+    /* Improved Carousel */
+    .carousel-container {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+
+    .carousel {
+      display: flex;
+      animation: scroll 30s linear infinite;
+      width: calc(280px * 10);
+    }
+
+    .carousel:hover {
+      animation-play-state: paused;
+    }
+
+    .carousel-item {
+      width: 280px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 15px;
+      transition: all 0.4s ease;
+    }
+
+    .carousel-item:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-280px * 5)); }
+    }
+
+    /* Modern Hero Content */
+    .hero-content {
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Theme Toggle Button removed - site is dark mode only */
+
+    /* Product Card Hover Effects */
+    .product-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .product-card figure img {
+      transition: all 0.5s ease;
+    }
+
+    .product-card:hover figure img {
+      transform: scale(1.1);
+    }
+
+    /* Modern Navbar */
+    .navbar {
+      transition: all 0.4s ease;
+      backdrop-filter: blur(0);
+      -webkit-backdrop-filter: blur(0);
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* Enhanced AMOLED Dark Theme */
+    [data-theme="black"] {
+      --background: #000000;
+      --primary: #1e1e1e;
+      --secondary: #333333;
+      --accent: #4a4a4a;
+      --neutral: #171717;
+      --base-100: #000000;
+      --base-200: #0a0a0a;
+      --base-300: #1a1a1a;
+      --base-content: #ffffff;
+      --info: #0ea5e9;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Modern Card Styling */
+    .card {
+      background-color: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Button Styling */
+    .btn-primary {
+      background-color: #1e1e1e;
+      border-color: #333333;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #333333;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .footer {
+      background-color: #0a0a0a;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Modern Glass Effects */
+    .glass-card {
+      background: rgba(15, 15, 15, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-navbar {
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Modern Text Effects */
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, #888 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Animated Underline Effect */
+    .hover-underline {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(90deg, #fff, transparent);
+      transition: width 0.3s ease;
+    }
+
+    .hover-underline:hover::after {
+      width: 100%;
+    }
+
+    /* Sample Website Ribbon Banner */
+    .sample-ribbon {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1000;
+      overflow: hidden;
+      width: 150px;
+      height: 150px;
+      pointer-events: none;
+    }
+
+    .sample-ribbon-content {
+      position: absolute;
+      top: 40px;
+      right: -35px;
+      transform: rotate(45deg);
+      width: 200px;
+      background: rgb(236, 41, 41);
+      text-align: center;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      border-top: 1px dashed rgba(255, 255, 255, 0.3);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Dark mode is now the default and only theme -->
+  <!-- Theme toggle button removed as requested -->
+
+  <!-- Sample Website Ribbon Banner -->
+  <div class="sample-ribbon">
+    <div class="sample-ribbon-content py-2">
+      Sample Website
+    </div>
+  </div>
+
+  <!-- Modern Navbar -->
+  <div class="navbar fixed top-0 z-50 px-4 sm:px-8 transition-all duration-300">
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-circle">
+          <i class="fas fa-bars text-xl"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow glass-card rounded-box w-52 animate__animated animate__fadeIn">
+          <li><a href="#home" class="hover-underline py-2">Home</a></li>
+          <li><a href="#products" class="hover-underline py-2">Products</a></li>
+          <li><a href="#services" class="hover-underline py-2">Services</a></li>
+          <li><a href="#testimonials" class="hover-underline py-2">Testimonials</a></li>
+          <li><a href="#contact" class="hover-underline py-2">Contact</a></li>
+        </ul>
+      </div>
+      <a class="btn btn-ghost text-xl font-bold tracking-wider"><span class="gradient-text">Cookie Studios</span></a>
+    </div>
+    <div class="navbar-end hidden lg:flex">
+      <ul class="menu menu-horizontal px-1 gap-1">
+        <li><a href="#home" class="hover-underline font-medium">Home</a></li>
+        <li><a href="#products" class="hover-underline font-medium">Products</a></li>
+        <li><a href="#services" class="hover-underline font-medium">Services</a></li>
+        <li><a href="#testimonials" class="hover-underline font-medium">Testimonials</a></li>
+        <li><a href="#contact" class="btn btn-sm btn-primary ml-2">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modern Hero Section with Parallax -->
+  <div id="home" class="parallax" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+    <div class="hero min-h-screen flex items-center justify-center">
+      <div class="hero-content text-center text-white p-8 glass-card animate__animated animate__fadeIn" data-aos="fade-up">
+        <div class="max-w-lg">
+          <h1 class="text-5xl md:text-6xl font-bold mb-5 glow-text">Cookie Studios</h1>
+          <p class="py-6 text-lg opacity-90">Redefining excellence through innovative products and premium services. Discover the perfect blend of style, functionality, and cutting-edge technology.</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+            <a href="#products" class="btn btn-primary btn-lg group transition-all duration-300">
+              Explore Products
+              <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="#services" class="btn btn-outline btn-secondary btn-lg">
+              Our Services
+              <i class="fas fa-cog ml-2 animate-spin-slow"></i>
+            </a>
+          </div>
+          <div class="mt-12 flex justify-center gap-6">
+            <div class="flex flex-col items-center">
+              <span class="text-3xl font-bold">500+</span>
+              <span class="text-sm opacity-75">Happy Clients</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-3xl font-bold">1,200</span>
+              <span class="text-sm opacity-75">Projects</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <span class="text-3xl font-bold">18K+</span>
+              <span class="text-sm opacity-75">Products Sold</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll Down Indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <a href="#products" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+        <i class="fas fa-chevron-down text-2xl"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Modern Products Section -->
+  <section id="products" class="py-24 px-4">
+    <div class="container mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-sm uppercase tracking-widest opacity-70">What We Offer</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 gradient-text inline-block">Our Premium Products</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-transparent mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="glass-card rounded-xl shadow-2xl product-card overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative overflow-hidden">
+            <div class="absolute top-4 right-4 bg-error text-white text-xs font-bold px-2 py-1 rounded-full z-10">NEW</div>
+            <figure class="overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Smartwatch" class="w-full h-64 object-cover" />
+            </figure>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-2">
+              <div class="badge badge-primary mr-2">Tech</div>
+              <div class="badge badge-outline">Wearable</div>
+            </div>
+            <h2 class="card-title text-2xl font-bold mb-2 hover-underline">Premium Smartwatch</h2>
+            <p class="text-base opacity-80 mb-4">Track your fitness, manage notifications, and stay connected with our sleek smartwatch design.</p>
+            <div class="flex items-center justify-between mt-6">
+              <span class="text-2xl font-bold">$299</span>
+              <button class="btn btn-primary btn-md group">
+                Buy Now
+                <i class="fas fa-shopping-cart ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="glass-card rounded-xl shadow-2xl product-card overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+          <figure class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wireless Earbuds" class="w-full h-64 object-cover" />
+          </figure>
+          <div class="p-6">
+            <div class="flex items-center mb-2">
+              <div class="badge badge-secondary mr-2">Audio</div>
+              <div class="badge badge-outline">Wireless</div>
+            </div>
+            <h2 class="card-title text-2xl font-bold mb-2 hover-underline">Wireless Earbuds</h2>
+            <p class="text-base opacity-80 mb-4">Immersive sound experience with noise cancellation and 24-hour battery life.</p>
+            <div class="flex items-center justify-between mt-6">
+              <span class="text-2xl font-bold">$179</span>
+              <button class="btn btn-primary btn-md group">
+                Buy Now
+                <i class="fas fa-shopping-cart ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="glass-card rounded-xl shadow-2xl product-card overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+          <figure class="overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smart Home Hub" class="w-full h-64 object-cover" />
+          </figure>
+          <div class="p-6">
+            <div class="flex items-center mb-2">
+              <div class="badge badge-accent mr-2">Smart Home</div>
+              <div class="badge badge-outline">IoT</div>
+            </div>
+            <h2 class="card-title text-2xl font-bold mb-2 hover-underline">Smart Home Hub</h2>
+            <p class="text-base opacity-80 mb-4">Control all your smart devices from one central hub with voice commands and automation.</p>
+            <div class="flex items-center justify-between mt-6">
+              <span class="text-2xl font-bold">$249</span>
+              <button class="btn btn-primary btn-md group">
+                Buy Now
+                <i class="fas fa-shopping-cart ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="#" class="btn btn-outline btn-lg">
+          View All Products
+          <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Auto-Moving Carousel -->
+  <div class="py-16 bg-gradient-to-b from-base-300 to-base-200">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10" data-aos="fade-up">
+        <span class="text-sm uppercase tracking-widest opacity-70">Trending Now</span>
+        <h3 class="text-3xl font-bold mt-2">Featured Products</h3>
+        <div class="w-16 h-1 bg-gradient-to-r from-primary to-transparent mx-auto mt-3"></div>
+      </div>
+
+      <div class="carousel-container" data-aos="fade-up">
+        <div class="carousel">
+          <!-- Carousel Items (duplicated for infinite effect) -->
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bluetooth Speaker" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Audio</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Bluetooth Speaker</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$89</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Smart Thermostat" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Smart Home</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Smart Thermostat</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$129</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1543472750-506bacbf5808?fm=auto&fit=crop&w=400&q=80" alt="Wireless Charger" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Accessories</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Wireless Charger</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$49</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Smart Doorbell" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Security</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Smart Doorbell</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$199</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fitness Tracker" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Fitness</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Fitness Tracker</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$79</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duplicate items for seamless looping -->
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Bluetooth Speaker" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Audio</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Bluetooth Speaker</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$89</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Smart Thermostat" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Smart Home</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Smart Thermostat</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$129</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1618577260913-cad548e0a8a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Wireless Charger" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Accessories</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Wireless Charger</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$49</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Smart Doorbell" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Security</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Smart Doorbell</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$199</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="glass-card rounded-lg shadow-lg h-full overflow-hidden">
+              <figure class="relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Fitness Tracker" class="w-full h-40 object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                  <span class="text-xs text-white font-medium">Fitness</span>
+                </div>
+              </figure>
+              <div class="p-4">
+                <h3 class="font-bold text-base mb-1">Fitness Tracker</h3>
+                <div class="flex justify-between items-center">
+                  <p class="font-bold text-sm">$79</p>
+                  <button class="btn btn-xs btn-circle btn-primary">
+                    <i class="fas fa-plus text-xs"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modern Services Section -->
+  <section id="services" class="py-24 px-4 bg-gradient-to-b from-base-200 to-base-100">
+    <div class="container mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-sm uppercase tracking-widest opacity-70">What We Do</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 gradient-text inline-block">Our Services</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-transparent mx-auto mt-4"></div>
+        <p class="max-w-2xl mx-auto mt-6 text-lg opacity-80">We provide cutting-edge solutions to help your business thrive in the digital landscape.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
+        <!-- Service 1 -->
+        <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:shadow-2xl group" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-start gap-5">
+            <div class="bg-gradient-to-br from-primary to-primary-focus rounded-xl p-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-laptop-code text-2xl text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">Custom Software Development</h3>
+              <p class="opacity-80 mb-4">Tailored software solutions designed to meet your specific business needs. Our expert team delivers scalable and efficient applications.</p>
+              <ul class="space-y-2">
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Enterprise Applications</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Cloud Solutions</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> API Development</li>
+              </ul>
+              <a href="#" class="inline-flex items-center mt-4 text-sm font-medium hover-underline">
+                Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:shadow-2xl group" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-start gap-5">
+            <div class="bg-gradient-to-br from-secondary to-secondary-focus rounded-xl p-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-mobile-alt text-2xl text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 group-hover:text-secondary transition-colors duration-300">Mobile App Development</h3>
+              <p class="opacity-80 mb-4">Create engaging mobile experiences for iOS and Android platforms. We transform your ideas into beautiful, functional applications.</p>
+              <ul class="space-y-2">
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Native iOS & Android</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Cross-Platform Solutions</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> App Store Optimization</li>
+              </ul>
+              <a href="#" class="inline-flex items-center mt-4 text-sm font-medium hover-underline">
+                Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:shadow-2xl group" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-start gap-5">
+            <div class="bg-gradient-to-br from-accent to-accent-focus rounded-xl p-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-globe text-2xl text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 group-hover:text-accent transition-colors duration-300">Web Design & Development</h3>
+              <p class="opacity-80 mb-4">Professional websites that capture your brand's essence. We create responsive, fast-loading, and SEO-friendly web experiences.</p>
+              <ul class="space-y-2">
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Responsive Design</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> E-commerce Solutions</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> CMS Development</li>
+              </ul>
+              <a href="#" class="inline-flex items-center mt-4 text-sm font-medium hover-underline">
+                Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:shadow-2xl group" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex items-start gap-5">
+            <div class="bg-gradient-to-br from-info to-info-focus rounded-xl p-4 group-hover:scale-110 transition-transform duration-300">
+              <i class="fas fa-lightbulb text-2xl text-white"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-3 group-hover:text-info transition-colors duration-300">IT Consulting</h3>
+              <p class="opacity-80 mb-4">Strategic technology guidance to optimize your business operations. Our experts provide insights for digital transformation.</p>
+              <ul class="space-y-2">
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Digital Strategy</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Technology Assessment</li>
+                <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Process Optimization</li>
+              </ul>
+              <a href="#" class="inline-flex items-center mt-4 text-sm font-medium hover-underline">
+                Learn More <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-16">
+        <a href="#contact" class="btn btn-primary btn-lg">
+          Get a Free Consultation
+          <i class="fas fa-headset ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Testimonials Section with Parallax -->
+  <section id="testimonials" class="parallax py-24" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-sm uppercase tracking-widest opacity-70 text-white">What Our Clients Say</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 text-white glow-text">Client Testimonials</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-white to-transparent mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Testimonial 1 -->
+        <div class="glass-card p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative">
+            <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+              <div class="avatar">
+                <div class="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sarah Johnson" />
+                </div>
+              </div>
+            </div>
+            <div class="text-center pt-8">
+              <h4 class="text-xl font-bold">Sarah Johnson</h4>
+              <p class="text-sm opacity-70 mb-4">CEO, TechFusion</p>
+              <div class="rating mb-4">
+                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+              </div>
+              <div class="relative">
+                <i class="fas fa-quote-left absolute -left-2 -top-2 text-3xl opacity-20"></i>
+                <p class="italic text-base">"Cookie Studios transformed our business with their innovative solutions. Their team delivered beyond our expectations, and we couldn't be happier with the results."</p>
+                <i class="fas fa-quote-right absolute -right-2 -bottom-2 text-3xl opacity-20"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="glass-card p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative">
+            <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+              <div class="avatar">
+                <div class="w-16 h-16 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael Chen" />
+                </div>
+              </div>
+            </div>
+            <div class="text-center pt-8">
+              <h4 class="text-xl font-bold">Michael Chen</h4>
+              <p class="text-sm opacity-70 mb-4">CTO, InnovateCorp</p>
+              <div class="rating mb-4">
+                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+              </div>
+              <div class="relative">
+                <i class="fas fa-quote-left absolute -left-2 -top-2 text-3xl opacity-20"></i>
+                <p class="italic text-base">"The products we purchased have significantly improved our productivity. The quality and customer service are unmatched in the industry."</p>
+                <i class="fas fa-quote-right absolute -right-2 -bottom-2 text-3xl opacity-20"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="glass-card p-8 rounded-xl shadow-2xl transform transition-all duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative">
+            <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
+              <div class="avatar">
+                <div class="w-16 h-16 rounded-full ring ring-accent ring-offset-base-100 ring-offset-2 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Emily Rodriguez" />
+                </div>
+              </div>
+            </div>
+            <div class="text-center pt-8">
+              <h4 class="text-xl font-bold">Emily Rodriguez</h4>
+              <p class="text-sm opacity-70 mb-4">Marketing Director, GlobalBrands</p>
+              <div class="rating mb-4">
+                <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" />
+              </div>
+              <div class="relative">
+                <i class="fas fa-quote-left absolute -left-2 -top-2 text-3xl opacity-20"></i>
+                <p class="italic text-base">"Working with Cookie Studios has been a game-changer for our marketing efforts. Their expertise and dedication are truly impressive."</p>
+                <i class="fas fa-quote-right absolute -right-2 -bottom-2 text-3xl opacity-20"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-20" data-aos="fade-up">
+        <a href="#" class="btn btn-outline btn-lg text-white border-white hover:bg-white hover:text-black transition-all duration-300">
+          View All Testimonials
+          <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Stats Section -->
+  <section class="py-20 bg-gradient-to-r from-base-300 to-base-200">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <span class="text-sm uppercase tracking-widest opacity-70">Our Growth</span>
+        <h2 class="text-3xl font-bold mt-2">Company Achievements</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <!-- Stat 1 -->
+        <div class="glass-card p-6 rounded-xl text-center transform transition-all duration-300 hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="100">
+          <div class="stat-figure text-primary mb-4 mx-auto bg-primary bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center">
+            <i class="fas fa-heart text-2xl text-primary"></i>
+          </div>
+          <div class="stat-value text-4xl font-bold text-primary mb-1">500+</div>
+          <div class="stat-title text-lg font-medium mb-2">Happy Clients</div>
+          <div class="stat-desc flex items-center justify-center text-success">
+            <i class="fas fa-arrow-up mr-1"></i> 25% increase from last year
+          </div>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="glass-card p-6 rounded-xl text-center transform transition-all duration-300 hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="200">
+          <div class="stat-figure text-secondary mb-4 mx-auto bg-secondary bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center">
+            <i class="fas fa-check-circle text-2xl text-secondary"></i>
+          </div>
+          <div class="stat-value text-4xl font-bold text-secondary mb-1">1,200</div>
+          <div class="stat-title text-lg font-medium mb-2">Projects Completed</div>
+          <div class="stat-desc flex items-center justify-center text-success">
+            <i class="fas fa-arrow-up mr-1"></i> 14% increase from last month
+          </div>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="glass-card p-6 rounded-xl text-center transform transition-all duration-300 hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="300">
+          <div class="stat-figure text-accent mb-4 mx-auto bg-accent bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center">
+            <i class="fas fa-shopping-cart text-2xl text-accent"></i>
+          </div>
+          <div class="stat-value text-4xl font-bold text-accent mb-1">18K+</div>
+          <div class="stat-title text-lg font-medium mb-2">Products Sold</div>
+          <div class="stat-desc flex items-center justify-center text-success">
+            <i class="fas fa-arrow-up mr-1"></i> 21% increase from last quarter
+          </div>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="glass-card p-6 rounded-xl text-center transform transition-all duration-300 hover:-translate-y-2" data-aos="zoom-in" data-aos-delay="400">
+          <div class="stat-figure text-info mb-4 mx-auto bg-info bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center">
+            <i class="fas fa-globe text-2xl text-info"></i>
+          </div>
+          <div class="stat-value text-4xl font-bold text-info mb-1">42</div>
+          <div class="stat-title text-lg font-medium mb-2">Countries Served</div>
+          <div class="stat-desc flex items-center justify-center text-success">
+            <i class="fas fa-arrow-up mr-1"></i> 8 new countries this year
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Contact Section -->
+  <section id="contact" class="py-24 px-4 bg-gradient-to-b from-base-100 to-base-200">
+    <div class="container mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-sm uppercase tracking-widest opacity-70">Contact Us</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 gradient-text inline-block">Get In Touch</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-transparent mx-auto mt-4"></div>
+        <p class="max-w-2xl mx-auto mt-6 text-lg opacity-80">Have a question or want to work with us? We'd love to hear from you!</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
+        <!-- Contact Info -->
+        <div class="lg:col-span-2" data-aos="fade-right">
+          <div class="glass-card p-8 rounded-xl h-full">
+            <h3 class="text-2xl font-bold mb-6 gradient-text inline-block">Contact Information</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
+                  <i class="fas fa-map-marker-alt text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Our Location</h4>
+                  <p class="opacity-80">123 Tech Boulevard, Innovation City, TC 12345</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="bg-secondary bg-opacity-10 p-3 rounded-full mr-4">
+                  <i class="fas fa-envelope text-secondary"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Email Us</h4>
+                  <p class="opacity-80">info@Cookiestudios.com</p>
+                  <p class="opacity-80">support@Cookiestudios.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="bg-accent bg-opacity-10 p-3 rounded-full mr-4">
+                  <i class="fas fa-phone-alt text-accent"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Call Us</h4>
+                  <p class="opacity-80">+1 (555) 123-4567</p>
+                  <p class="opacity-80">+1 (555) 987-6543</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="bg-info bg-opacity-10 p-3 rounded-full mr-4">
+                  <i class="fas fa-clock text-info"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Working Hours</h4>
+                  <p class="opacity-80">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                  <p class="opacity-80">Saturday: 10:00 AM - 4:00 PM</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <h4 class="font-bold mb-4">Follow Us</h4>
+              <div class="flex gap-4">
+                <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#1da1f2] to-[#0d8bd9] border-none hover:scale-110 transition-transform">
+                  <i class="fab fa-twitter text-white"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#4267B2] to-[#3b5998] border-none hover:scale-110 transition-transform">
+                  <i class="fab fa-facebook-f text-white"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#833AB4] to-[#C13584] border-none hover:scale-110 transition-transform">
+                  <i class="fab fa-instagram text-white"></i>
+                </a>
+                <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#0e76a8] to-[#0a66c2] border-none hover:scale-110 transition-transform">
+                  <i class="fab fa-linkedin-in text-white"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-3" data-aos="fade-left">
+          <div class="glass-card p-8 rounded-xl">
+            <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
+
+            <form>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text font-medium">Full Name</span>
+                  </label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 opacity-50">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <input type="text" placeholder="John Doe" class="input input-bordered w-full pl-10 bg-base-200 focus:bg-base-300 transition-colors duration-300" />
+                  </div>
+                </div>
+
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text font-medium">Email Address</span>
+                  </label>
+                  <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 opacity-50">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <input type="email" placeholder="example@email.com" class="input input-bordered w-full pl-10 bg-base-200 focus:bg-base-300 transition-colors duration-300" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-control mb-6">
+                <label class="label">
+                  <span class="label-text font-medium">Subject</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-3 opacity-50">
+                    <i class="fas fa-tag"></i>
+                  </span>
+                  <input type="text" placeholder="How can we help you?" class="input input-bordered w-full pl-10 bg-base-200 focus:bg-base-300 transition-colors duration-300" />
+                </div>
+              </div>
+
+              <div class="form-control mb-6">
+                <label class="label">
+                  <span class="label-text font-medium">Message</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute top-3 left-0 flex items-center pl-3 opacity-50">
+                    <i class="fas fa-comment-alt"></i>
+                  </span>
+                  <textarea class="textarea textarea-bordered w-full pl-10 h-32 bg-base-200 focus:bg-base-300 transition-colors duration-300" placeholder="Your message here..."></textarea>
+                </div>
+              </div>
+
+              <div class="flex items-center mb-6">
+                <input type="checkbox" class="checkbox checkbox-primary mr-2" />
+                <span class="text-sm">I agree to the <a href="#" class="text-primary hover-underline">Terms of Service</a> and <a href="#" class="text-primary hover-underline">Privacy Policy</a></span>
+              </div>
+
+              <button class="btn btn-primary w-full group">
+                Send Message
+                <i class="fas fa-paper-plane ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="mt-16 glass-card rounded-xl overflow-hidden max-w-6xl mx-auto" data-aos="zoom-in">
+        <div class="aspect-w-16 aspect-h-7 w-full">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.30594994064!2d-74.25986652425023!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1647286028735!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="w-full h-96"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Footer -->
+  <footer class="bg-gradient-to-b from-base-300 to-base-200 pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        <!-- Company Info -->
+        <div class="lg:col-span-2">
+          <h3 class="text-2xl font-bold mb-4 gradient-text inline-block">Cookie Studios</h3>
+          <p class="opacity-80 mb-6 max-w-md">Redefining excellence through innovative products and premium services. Discover the perfect blend of style, functionality, and cutting-edge technology.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#1da1f2] to-[#0d8bd9] border-none hover:scale-110 transition-transform">
+              <i class="fab fa-twitter text-white"></i>
+            </a>
+            <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#4267B2] to-[#3b5998] border-none hover:scale-110 transition-transform">
+              <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#833AB4] to-[#C13584] border-none hover:scale-110 transition-transform">
+              <i class="fab fa-instagram text-white"></i>
+            </a>
+            <a href="#" class="btn btn-circle btn-sm bg-gradient-to-r from-[#0e76a8] to-[#0a66c2] border-none hover:scale-110 transition-transform">
+              <i class="fab fa-linkedin-in text-white"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Home</a></li>
+            <li><a href="#products" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Products</a></li>
+            <li><a href="#services" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Services</a></li>
+            <li><a href="#testimonials" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Testimonials</a></li>
+            <li><a href="#contact" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="text-lg font-bold mb-4">Our Services</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Software Development</a></li>
+            <li><a href="#" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Mobile App Development</a></li>
+            <li><a href="#" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Web Design</a></li>
+            <li><a href="#" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> IT Consulting</a></li>
+            <li><a href="#" class="hover-underline opacity-80 hover:opacity-100 transition-opacity flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Cloud Services</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h4 class="text-lg font-bold mb-4">Subscribe to Newsletter</h4>
+          <p class="opacity-80 mb-4">Stay updated with our latest news and offers.</p>
+          <div class="form-control">
+            <div class="relative">
+              <input type="email" placeholder="Your email address" class="input input-bordered w-full pr-16 bg-base-200 focus:bg-base-300 transition-colors duration-300" />
+              <button class="btn btn-primary absolute top-0 right-0 rounded-l-none">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="flex items-center">
+              <i class="fas fa-shield-alt text-success mr-2"></i>
+              <span class="text-xs opacity-80">Your data is secure with us</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-base-content border-opacity-10 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="opacity-80 text-sm mb-4 md:mb-0">© 2025 Cookie Studios. All rights reserved.</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-sm opacity-80 hover:opacity-100 transition-opacity hover-underline">Privacy Policy</a>
+            <a href="#" class="text-sm opacity-80 hover:opacity-100 transition-opacity hover-underline">Terms of Service</a>
+            <a href="#" class="text-sm opacity-80 hover:opacity-100 transition-opacity hover-underline">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <!-- Custom Scripts -->
+  <script>
+    // Initialize AOS Animation with enhanced settings
+    AOS.init({
+      duration: 800,
+      easing: 'cubic-bezier(0.25, 0.1, 0.25, 1.0)',
+      once: false,
+      mirror: true,
+      anchorPlacement: 'center-bottom',
+      disable: 'mobile'
+    });
+
+    // Set theme to dark mode only
+    const htmlTag = document.documentElement;
+    htmlTag.setAttribute('data-theme', 'black');
+
+    // Store the theme preference
+    localStorage.setItem('theme', 'dark');
+
+    // Enhanced navbar scroll effect with glass morphism
+    const navbar = document.querySelector('.navbar');
+    const heroSection = document.querySelector('#home');
+    let lastScrollY = window.scrollY;
+
+    function updateNavbar() {
+      const scrollY = window.scrollY;
+
+      // Add scrolled class based on scroll position
+      if (scrollY > 100) {
+        navbar.classList.add('scrolled', 'glass-navbar');
+      } else {
+        navbar.classList.remove('scrolled', 'glass-navbar');
+      }
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (scrollY > lastScrollY && scrollY > 300) {
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        navbar.style.transform = 'translateY(0)';
+      }
+
+      lastScrollY = scrollY;
+    }
+
+    window.addEventListener('scroll', updateNavbar);
+    updateNavbar(); // Initialize on page load
+
+    // Improved smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return; // Skip empty anchors
+
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          // Close mobile menu if open
+          const mobileMenuCheckbox = document.querySelector('.dropdown input[type="checkbox"]');
+          if (mobileMenuCheckbox && mobileMenuCheckbox.checked) {
+            mobileMenuCheckbox.checked = false;
+          }
+
+          // Smooth scroll with offset for fixed navbar
+          const navbarHeight = navbar.offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Lazy loading for images
+    document.addEventListener('DOMContentLoaded', function() {
+      const lazyImages = document.querySelectorAll('img[data-src]');
+
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              imageObserver.unobserve(img);
+            }
+          });
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+      } else {
+        // Fallback for browsers without IntersectionObserver support
+        lazyImages.forEach(img => {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        });
+      }
+    });
+
+    // Add animation class to elements when they come into view
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.animate-on-scroll');
+
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementPosition < windowHeight - 50) {
+          element.classList.add('animate__animated', element.dataset.animation || 'animate__fadeIn');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Initialize on page load
+  </script>
+</body>
+</html>
